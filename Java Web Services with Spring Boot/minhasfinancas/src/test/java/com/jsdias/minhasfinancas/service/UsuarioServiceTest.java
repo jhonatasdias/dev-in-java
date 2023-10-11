@@ -23,7 +23,7 @@ import com.jsdias.minhasfinancas.model.repository.UsuarioRepository;
 import com.jsdias.minhasfinancas.service.impl.UsuarioServiceImpl;
 
 @ExtendWith( SpringExtension.class )
-@SpringBootTest
+@SpringBootTest // inicializa o spring boot
 @ActiveProfiles("test")
 public class UsuarioServiceTest {
 
