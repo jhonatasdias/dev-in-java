@@ -9,10 +9,9 @@ import model.entities.Vehicle;
 import model.services.BrazilTaxService;
 import model.services.RentalService;
 
-public class App {
+public class App2 {
 
 	public static void main(String[] args) {
-		
 		Scanner sc = new Scanner(System.in);
 		
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
@@ -31,15 +30,14 @@ public class App {
 		
 		CarRental rental = new CarRental(dateStart, dateFinish, new Vehicle(model));
 		
-		BrazilTaxService taxService = new BrazilTaxService();
+		RentalService service = new RentalService(pricePerHour, pricePerDay, new BrazilTaxService());
 		
-		RentalService rentalService = new RentalService(pricePerHour, pricePerDay, taxService);
-		
-		rentalService.processInvoice(rental);
+		service.processInvoice(rental);
 		
 		System.out.println(rental.getInvoice().toString());
-
+		
 		sc.close();
+
 	}
 
 }
