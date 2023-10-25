@@ -11,7 +11,6 @@ public class CarRental {
 	private Invoice invoice;
 	
 	public CarRental(LocalDateTime start, LocalDateTime finish, Vehicle vehicle) {
-		super();
 		this.start = start;
 		this.finish = finish;
 		this.vehicle = vehicle;
