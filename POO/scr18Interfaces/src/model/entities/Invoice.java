@@ -32,7 +32,8 @@ public class Invoice {
 
 	@Override
 	public String toString() {
-		return "Invoice [basicPayment=" + basicPayment + ", tax=" + tax + "]";
+		return "Invoice [basicPayment=" + basicPayment + ", tax=" + tax + "]"
+				+ "total: " + TotalPayment();
 	}
 	
 }

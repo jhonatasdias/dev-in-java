@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 import model.entities.CarRental;
 import model.entities.Vehicle;
-import model.services.BrazilTaxService;
 import model.services.RentalService;
+import model.services.impl.BrazilTaxService;
 
 public class App {
 
@@ -24,16 +24,15 @@ public class App {
 		LocalDateTime dateStart = LocalDateTime.parse(sc.nextLine(), fmt);
 		System.out.println("Saida: ");
 		LocalDateTime dateFinish = LocalDateTime.parse(sc.nextLine(), fmt);
+		
+		CarRental rental = new CarRental(dateStart, dateFinish, new Vehicle(model));
+		
 		System.out.println("Entre com o preço por hora: ");
 		double pricePerHour = sc.nextDouble();
 		System.out.println("Entre com o preço por dia: ");
 		double pricePerDay = sc.nextDouble();
 		
-		CarRental rental = new CarRental(dateStart, dateFinish, new Vehicle(model));
-		
-		BrazilTaxService taxService = new BrazilTaxService();
-		
-		RentalService rentalService = new RentalService(pricePerHour, pricePerDay, taxService);
+		RentalService rentalService = new RentalService(pricePerHour, pricePerDay, new BrazilTaxService());
 		
 		rentalService.processInvoice(rental);
 		

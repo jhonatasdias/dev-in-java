@@ -1,8 +1,0 @@
-/**
- * 
- */
-/**
- * 
- */
-module scr18Interfaces {
-}

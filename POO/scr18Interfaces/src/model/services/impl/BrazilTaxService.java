@@ -1,6 +1,8 @@
-package model.services;
+package model.services.impl;
 
-public class BrazilTaxService {
+import model.services.TaxService;
+
+public class BrazilTaxService implements TaxService {
 
 	public double tax(double amount) {
 		
