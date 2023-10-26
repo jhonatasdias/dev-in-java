@@ -9,7 +9,7 @@ import model.entities.Vehicle;
 import model.services.RentalService;
 import model.services.impl.BrazilTaxService;
 
-public class App {
+public class AppRentalService {
 
 	public static void main(String[] args) {
 		

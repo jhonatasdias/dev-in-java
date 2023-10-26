@@ -12,7 +12,7 @@ public class RentalService {
 	
 	private TaxService taxService;
 
-	public RentalService(Double pricePerHour, Double pricePerDay, TaxService taxService) {
+	public RentalService(Double pricePerHour, Double pricePerDay, TaxService taxService) { // injeção de dependência por construtor
 		this.pricePerHour = pricePerHour;
 		this.pricePerDay = pricePerDay;
 		this.taxService = taxService;
