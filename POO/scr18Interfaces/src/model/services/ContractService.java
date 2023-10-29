@@ -1,6 +1,6 @@
 package model.services;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import model.entities.Contract;
@@ -10,21 +10,29 @@ public class ContractService {
 	
 	private OnlinePaymentService paymentService;
 
+	public ContractService(OnlinePaymentService paymentService) {
+		this.paymentService = paymentService;
+	}
+
 	public void processContract(Contract contract, Integer months) {
 		
-		double valuePerMonth = contract.getTotalValue() / months;
+
+		double basicQuota = (double) contract.getTotalValue() / months;
 		
 		List<Installment> list = contract.getInstallments();
 		
-		for(int i = 0; i < months; i++) {
-			double interes = paymentService.interest(valuePerMonth, i);
-			double free = paymentService.paymentFee(valuePerMonth);
+		for(int i = 1; i <= months; i++) {
 			
-			double tax = interes + free;
+			double interes = paymentService.interest(basicQuota, i);
+			double fee = paymentService.paymentFee(basicQuota + interes);
 			
-			LocalDateTime dueDate = contract.getDate().plusDays(30);
+			double tax = interes + fee;
 			
-			list.add(new Installment(dueDate, tax ));
+			double quota = basicQuota + tax;
+			
+			LocalDate dueDate = contract.getDate().plusMonths(i);
+			
+			list.add(new Installment(dueDate, quota));
 			
 		}
 	
